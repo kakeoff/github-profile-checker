@@ -1,4 +1,5 @@
 /* eslint-env node */
+require("@rushstack/eslint-patch/modern-module-resolution");
 
 module.exports = {
   root: true,
@@ -13,9 +14,10 @@ module.exports = {
     "plugin:vue/strongly-recommended",
     "eslint:recommended",
     "@vue/typescript/recommended",
+    "prettier",
   ],
   parser: "vue-eslint-parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "prettier"],
   parserOptions: {
     parser: {
       js: "espree",
@@ -24,6 +26,7 @@ module.exports = {
     },
   },
   rules: {
+    "prettier/prettier": "error",
     "vue/no-multiple-template-root": "off",
     "no-plusplus": "off",
     "vue/script-setup-uses-vars": 1,

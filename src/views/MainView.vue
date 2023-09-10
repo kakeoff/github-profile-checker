@@ -1,5 +1,8 @@
 <template>
-  <div>{{ message }}</div>
+  <div>
+    {{ message }}
+    <v-btn prepend-icon="$vuetify"> Button </v-btn>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -1,7 +1,11 @@
-import HomeView from './views/HomeView.vue'
-import NotFound from './views/NotFound.vue'
+import MainView from "./views/MainView.vue";
+import NotFoundView from "./views/NotFoundView.vue";
 
 export const routes = [
-  { path: '/', component: HomeView, meta: { title: 'Home' }},
-  { path: '/:pathMatch(.*)*', component: NotFound, meta: { title: 'Page not found' }},
-]
+  { path: "/", component: MainView, meta: { title: "Main" } },
+  {
+    path: "/:pathMatch(.*)*",
+    component: NotFoundView,
+    meta: { title: "Page not found" },
+  },
+];
