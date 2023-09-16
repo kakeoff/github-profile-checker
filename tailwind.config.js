@@ -3,7 +3,6 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./index.html", "./src/**/*.vue", "./src/**/*.ts"],
-  prefix: "tw-",
   theme: {
     extend: {
       fontFamily: {

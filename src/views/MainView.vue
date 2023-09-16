@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-w-full"></div>
+  <div class="w-full"></div>
 </template>
 
 <script lang="ts">

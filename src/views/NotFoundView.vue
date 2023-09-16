@@ -1,14 +1,15 @@
 <template>
-  <div
-    class="tw-flex tw-text-center tw-h-full tw-items-center tw-justify-center tw-flex-col"
-  >
-    <h1 class="tw-font-[700] tw-text-[60px]">Not Found.</h1>
-    <p class="tw-text-[30px] tw-font-[500]">
+  <div class="flex text-center h-full items-center justify-center flex-col">
+    <h1 class="font-[700] text-[60px]">Not Found.</h1>
+    <p class="text-[30px] font-[500]">
       You’ve landed on a URL that doesn’t seem to exist.
     </p>
-    <v-btn @click="redirectHome" class="tw-mt-[15px]" width="300">
+    <button
+      class="p-[10px] bg-gray-200 mt-[15px] rounded-[12px] hover:bg-gray-300 transition duration-200"
+      @click="redirectHome"
+    >
       RETURN HOME
-    </v-btn>
+    </button>
   </div>
 </template>
 
