@@ -17,6 +17,7 @@
         <input
           v-model="inputValue"
           @blur="onShowSearchInput(false)"
+          @keyup.enter="onSearch"
           ref="searchInputEl"
           placeholder="Profile name"
           v-if="showSearchInput"
@@ -31,10 +32,13 @@
 
 <script setup lang="ts">
 import { nextTick, Ref, ref } from "vue";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const showSearchInput: Ref<boolean> = ref(false);
 const searchInputEl: Ref<HTMLInputElement | null> = ref(null);
 const inputValue = ref("");
+
 const onShowSearchInput = async (value: boolean) => {
   showSearchInput.value = value;
   nextTick(() => {
@@ -42,5 +46,18 @@ const onShowSearchInput = async (value: boolean) => {
       searchInputEl.value.focus();
     }
   });
+};
+
+const onSearch = () => {
+  if (inputValue.value.length) {
+    router.push({
+      name: "searchView",
+      query: {
+        q: inputValue.value,
+      },
+    });
+    onShowSearchInput(false);
+    inputValue.value = "";
+  }
 };
 </script>
