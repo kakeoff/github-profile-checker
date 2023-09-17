@@ -25,7 +25,7 @@
       />
     </div>
   </nav>
-  <div class="overflow-y-auto mt-[50px]">
+  <div class="overflow-y-auto overflow-x-hidden mt-[50px]">
     <slot />
   </div>
   <div
