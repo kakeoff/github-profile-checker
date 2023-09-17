@@ -1,6 +1,7 @@
 <template>
   <div class="mt-[10px] mx-[20px] flex flex-col items-center h-screen w-full">
     <div
+      v-if="profileLoaded"
       class="shadow-lg w-[80%] flex flex-row justify-between bg-gray-100 rounded-[12px]"
     >
       <div class="flex flex-row gap-[10px]">
@@ -31,18 +32,22 @@
             >
           </div>
           <div class="flex flex-row gap-[10px]">
-            <div
-              class="text-[20px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
-            >
-              <span class="mdi mdi-calendar-month text-[30px]" />
-              <span>{{ formatDate(userProfile?.created_at) }}</span>
-            </div>
-            <div
-              class="text-[20px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
-            >
-              <span class="mdi mdi-update text-[30px]" />
-              <span>{{ formatDate(userProfile?.updated_at) }}</span>
-            </div>
+            <el-tooltip content="Profile creation date">
+              <div
+                class="text-[20px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
+              >
+                <span class="mdi mdi-calendar-month text-[30px]" />
+                <span>{{ formatDate(userProfile?.created_at) }}</span>
+              </div>
+            </el-tooltip>
+            <el-tooltip content="Profile last activity date">
+              <div
+                class="text-[20px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
+              >
+                <span class="mdi mdi-update text-[30px]" />
+                <span>{{ formatDate(userProfile?.updated_at) }}</span>
+              </div>
+            </el-tooltip>
           </div>
           <button
             class="text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] transition duration-200 bg-gray-200 rounded-tr-[12px] rounded-bl-[12px] px-[10px] py-[5px] max-w-[170px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
@@ -66,15 +71,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, watch } from "vue";
+import { computed, nextTick, onMounted, Ref, ref, watch } from "vue";
 import { useProfilesStore } from "../store/profiles";
 import { useRouter, useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
+import { ElLoading } from "element-plus";
 
 const route = useRoute();
 const router = useRouter();
 
 const profilesStore = useProfilesStore();
+
+const profileLoaded: Ref<boolean> = ref(false);
 
 const userProfile = computed(() => {
   return profilesStore.profile;
@@ -85,12 +93,12 @@ const searchValue = computed(() => {
 
 watch(searchValue, (newVal, oldVal) => {
   if (newVal !== oldVal) {
-    getGithubUser();
+    getAllProfileData();
   }
 });
 
 onMounted(async () => {
-  getGithubUser();
+  getAllProfileData();
 });
 
 const getGithubUser = async () => {
@@ -104,6 +112,24 @@ const getGithubUser = async () => {
     });
     router.push("/");
   }
+};
+
+const getAllProfileData = async () => {
+  profileLoaded.value = false;
+  const loading = ElLoading.service({
+    lock: true,
+    text: "Loading",
+    background: "rgba(0, 0, 0, 0.7)",
+  });
+
+  // data
+  await getGithubUser();
+  // -------
+
+  nextTick(() => {
+    profileLoaded.value = true;
+  });
+  loading.close();
 };
 
 const formatDate = (inputDateString: string | undefined) => {

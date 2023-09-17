@@ -8,32 +8,38 @@
     >
       Github Profile Checker
     </router-link>
-    <div class="flex items-center">
-      <span
-        @click="onShowSearchInput(true)"
-        :class="{
-          'hover:scale-[1.1] transition duration-200 cursor-pointer':
-            !showSearchInput,
-        }"
-        class="mdi mdi-magnify text-[35px]"
-      />
-      <input
-        v-model="inputValue"
-        @blur="onShowSearchInput(false)"
-        @keyup.enter="onSearch"
-        ref="searchInputEl"
-        placeholder="Profile name"
-        v-if="showSearchInput"
-        class="transition bg-gray-200 duration-200 rounded-[12px] h-[30px]"
-        type="text"
-      />
-    </div>
+    <el-tooltip
+      :disabled="showSearchInput"
+      content="Search profile"
+      placement="bottom"
+    >
+      <div class="flex items-center">
+        <span
+          @click="onShowSearchInput(true)"
+          :class="{
+            'hover:scale-[1.1] transition duration-200 cursor-pointer':
+              !showSearchInput,
+          }"
+          class="mdi mdi-magnify text-[35px]"
+        />
+        <input
+          v-model="inputValue"
+          @blur="onShowSearchInput(false)"
+          @keyup.enter="onSearch"
+          ref="searchInputEl"
+          placeholder="Profile name"
+          v-if="showSearchInput"
+          class="transition bg-gray-200 duration-200 rounded-[12px] h-[30px]"
+          type="text"
+        />
+      </div>
+    </el-tooltip>
   </nav>
   <div class="overflow-y-auto overflow-x-hidden mt-[50px]">
     <slot />
   </div>
   <div
-    class="fixed bottom-0 w-full flex flex-row items-center py-[20px] justify-center"
+    class="fixed bottom-0 w-full text-center px-[30px] flex flex-row items-center py-[20px] justify-center"
   >
     <span>
       Created by
