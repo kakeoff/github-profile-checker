@@ -11,7 +11,11 @@
     <div class="flex items-center">
       <span
         @click="onShowSearchInput(true)"
-        class="mdi mdi-magnify cursor-pointer text-[35px]"
+        :class="{
+          'hover:scale-[1.1] transition duration-200 cursor-pointer':
+            !showSearchInput,
+        }"
+        class="mdi mdi-magnify text-[35px]"
       />
       <input
         v-model="inputValue"

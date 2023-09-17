@@ -68,9 +68,10 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from "vue";
 import { useProfilesStore } from "../store/profiles";
-import { useRoute } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 
 const profilesStore = useProfilesStore();
 
@@ -93,7 +94,10 @@ onMounted(async () => {
 
 const getGithubUser = async () => {
   if (!searchValue.value.length) return;
-  await profilesStore.getGithubUser(searchValue.value);
+  const user = await profilesStore.getGithubUser(searchValue.value);
+  if (!user) {
+    router.push("/");
+  }
 };
 
 const formatDate = (inputDateString: string | undefined) => {
