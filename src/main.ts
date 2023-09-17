@@ -4,7 +4,6 @@ import App from "./App.vue";
 import { routes } from "./routes";
 import "./index.css";
 import { createPinia } from "pinia";
-
 import "@mdi/font/css/materialdesignicons.css";
 
 const pinia = createPinia();

@@ -69,6 +69,7 @@
 import { computed, onMounted, watch } from "vue";
 import { useProfilesStore } from "../store/profiles";
 import { useRouter, useRoute } from "vue-router";
+import { ElNotification } from "element-plus";
 
 const route = useRoute();
 const router = useRouter();
@@ -96,6 +97,11 @@ const getGithubUser = async () => {
   if (!searchValue.value.length) return;
   const user = await profilesStore.getGithubUser(searchValue.value);
   if (!user) {
+    ElNotification({
+      title: "Profile not found",
+      type: "error",
+      message: "Profile with this name does not exist. Try again.",
+    });
     router.push("/");
   }
 };
