@@ -1,21 +1,38 @@
 <template>
   <pre>
-    {{ user }}
+    {{ userProfile }}
 
   </pre>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 import { useProfilesStore } from "../store/profiles";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 const profilesStore = useProfilesStore();
 
-const user = computed(() => {
+const userProfile = computed(() => {
   return profilesStore.profile;
+});
+const searchValue = computed(() => {
+  return String(route.query.q);
+});
+
+watch(searchValue, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    getGithubUser();
+  }
 });
 
 onMounted(async () => {
-  await profilesStore.getGithubUser("kakeoff");
+  getGithubUser();
 });
+
+const getGithubUser = async () => {
+  if (!searchValue.value.length) return;
+  await profilesStore.getGithubUser(searchValue.value);
+};
 </script>

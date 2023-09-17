@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-[10px] flex items-center flex-col gap-[20px] mt-[50px]">
+  <div class="w-full p-[10px] flex items-center flex-col gap-[20px] mt-[150px]">
     <div class="text-center">
       <span class="text-[25px] md:text-[40px]"> Explore Github profiles </span>
     </div>
