@@ -111,7 +111,13 @@ const getGithubUser = async () => {
       message: "Profile with this name does not exist. Try again.",
     });
     router.push("/");
+    return;
   }
+};
+
+const getRepos = async (url: string) => {
+  const repos = await profilesStore.getGithubUserRepos(url);
+  console.log(repos);
 };
 
 const getAllProfileData = async () => {
@@ -124,6 +130,9 @@ const getAllProfileData = async () => {
 
   // data
   await getGithubUser();
+  if (userProfile.value?.repos_url) {
+    await getRepos(userProfile.value?.repos_url);
+  }
   // -------
 
   nextTick(() => {

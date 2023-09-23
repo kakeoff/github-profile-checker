@@ -32,3 +32,24 @@ export type GithubUserType = {
   updated_at: string;
   url: string;
 };
+
+export type GitHubRepoType = {
+  created_at: string;
+  description: string;
+  fork: boolean;
+  forks: number;
+  forks_count: number;
+  homepage: string;
+  html_url: string;
+  id: number;
+  language: string;
+  languages_url: string;
+  name: string;
+  open_issues: number;
+  open_issues_count: number;
+  size: number;
+  stargazers_count: number;
+  updated_at: string;
+  url: string;
+  watchers_count: number;
+};

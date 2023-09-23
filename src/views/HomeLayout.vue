@@ -35,7 +35,7 @@
       </div>
     </el-tooltip>
   </nav>
-  <div class="overflow-y-auto overflow-x-hidden mt-[50px]">
+  <div class="overflow-y-auto scroll-smooth overflow-x-hidden mt-[50px]">
     <slot />
   </div>
   <div
