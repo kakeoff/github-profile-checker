@@ -35,11 +35,11 @@
       </div>
     </el-tooltip>
   </nav>
-  <div class="overflow-y-auto scroll-smooth overflow-x-hidden mt-[50px]">
+  <div class="overflow-y-auto overflow-x-hidden mt-[50px]">
     <slot />
   </div>
   <div
-    class="fixed bottom-0 w-full text-center px-[30px] flex flex-row items-center py-[20px] justify-center"
+    class="w-full text-center px-[30px] flex flex-row items-center py-[20px] justify-center"
   >
     <span>
       Created by

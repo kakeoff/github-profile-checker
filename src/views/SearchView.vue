@@ -67,6 +67,22 @@
         <span class="mdi mdi-link-variant"></span>
       </a>
     </div>
+    <div
+      class="flex flex-row flex-wrap justify-around gap-[40px] mt-[50px] w-full"
+    >
+      <div class="w-[500px] h-[500px]">
+        <LineChart
+          v-if="graphData.numberOfReposByYear"
+          :chart-data="graphData.numberOfReposByYear"
+        />
+      </div>
+      <div class="w-[500px] h-[500px]">
+        <DoughnutChart
+          v-if="graphData.languageTypes"
+          :chart-data="graphData.languageTypes"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,6 +94,8 @@ import { ElNotification } from "element-plus";
 import { ElLoading } from "element-plus";
 import createGraphData from "../helpers/graphData";
 import { GraphDataType } from "../types/chartTypes";
+import LineChart from "../components/charts/LineChart.vue";
+import DoughnutChart from "../components/charts/DoughnutChart.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -86,7 +104,7 @@ const profilesStore = useProfilesStore();
 
 const profileLoaded: Ref<boolean> = ref(false);
 
-const graphData: Ref<GraphDataType> = ref({});
+const graphData: Ref<GraphDataType> = ref({} as GraphDataType);
 
 const userProfile = computed(() => {
   return profilesStore.profile;

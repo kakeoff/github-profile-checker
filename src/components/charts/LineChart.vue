@@ -1,31 +1,58 @@
-<script>
-import { Line } from "vue-chartjs";
+<template>
+  <Line :height="500" :width="500" :data="chartData" :options="options" />
+</template>
 
-const options = {
-  scales: {
-    xAxes: [
-      {
-        display: true,
-        ticks: {
-          callback(dataLabel, index) {
-            return index % 2 === 0 ? dataLabel : "";
-          },
+<script lang="ts">
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "vue-chartjs";
+import { ChartDataType } from "../../types/chartTypes";
+import { defineComponent, PropType } from "vue";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+);
+
+export default defineComponent({
+  components: {
+    Line,
+  },
+  data() {
+    return {
+      options: {
+        scales: {
+          xAxes: [
+            {
+              display: true,
+              ticks: {
+                callback(dataLabel: string, index: number) {
+                  return index % 2 === 0 ? dataLabel : "";
+                },
+              },
+            },
+          ],
         },
       },
-    ],
+    };
   },
-};
-
-export default {
-  extends: Line,
-  props: ["chartData"],
-  mounted() {
-    this.renderChart(this.chartData, options);
-  },
-  watch: {
-    chartData(newValue) {
-      this.renderChart(newValue);
+  props: {
+    chartData: {
+      default: () => ({}),
+      type: Object as PropType<ChartDataType>,
     },
   },
-};
+});
 </script>
