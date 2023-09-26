@@ -76,6 +76,8 @@ import { useProfilesStore } from "../store/profiles";
 import { useRouter, useRoute } from "vue-router";
 import { ElNotification } from "element-plus";
 import { ElLoading } from "element-plus";
+import createGraphData from "../helpers/graphData";
+import { GraphDataType } from "../types/chartTypes";
 
 const route = useRoute();
 const router = useRouter();
@@ -83,6 +85,8 @@ const router = useRouter();
 const profilesStore = useProfilesStore();
 
 const profileLoaded: Ref<boolean> = ref(false);
+
+const graphData: Ref<GraphDataType> = ref({});
 
 const userProfile = computed(() => {
   return profilesStore.profile;
@@ -116,8 +120,9 @@ const getGithubUser = async () => {
 };
 
 const getRepos = async (url: string) => {
-  const repos = await profilesStore.getGithubUserRepos(url);
-  console.log(repos);
+  await profilesStore.getGithubUserRepos(url);
+  graphData.value = createGraphData(profilesStore.profileRepos);
+  console.log(graphData.value);
 };
 
 const getAllProfileData = async () => {

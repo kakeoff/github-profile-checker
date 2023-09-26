@@ -7,9 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Bar: typeof import('./src/components/charts/Bar.vue')['default']
+    Doughnut: typeof import('./src/components/charts/Doughnut.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    LineChart: typeof import('./src/components/chart/LineChart.vue')['default']
+    LineChart: typeof import('./src/components/charts/LineChart.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
