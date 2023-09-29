@@ -82,6 +82,12 @@
           :chart-data="graphData.languageTypes"
         />
       </div>
+      <div class="w-[500px] h-[500px]">
+        <BarChart
+          v-if="graphData.topReposByStars"
+          :chart-data="graphData.topReposByStars"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -96,6 +102,7 @@ import createGraphData from "../helpers/graphData";
 import { GraphDataType } from "../types/chartTypes";
 import LineChart from "../components/charts/LineChart.vue";
 import DoughnutChart from "../components/charts/DoughnutChart.vue";
+import BarChart from "../components/charts/BarChart.vue";
 
 const route = useRoute();
 const router = useRouter();

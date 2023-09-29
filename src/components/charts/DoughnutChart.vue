@@ -1,15 +1,9 @@
 <template>
-  <Doughnut
-    :chart-options="chartOptions"
-    :data="chartData"
-    :width="500"
-    :height="500"
-  />
+  <Doughnut :data="chartData" :width="500" :height="500" />
 </template>
 
 <script lang="ts">
 import { Doughnut } from "vue-chartjs";
-import { ChartDataType } from "../../types/chartTypes";
 import { defineComponent, PropType } from "vue";
 
 import {
@@ -19,6 +13,7 @@ import {
   Legend,
   ArcElement,
   CategoryScale,
+  ChartData,
 } from "chart.js";
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
@@ -30,16 +25,8 @@ export default defineComponent({
   props: {
     chartData: {
       default: () => ({}),
-      type: Object as PropType<ChartDataType>,
+      type: Object as PropType<ChartData<"doughnut", number[], unknown>>,
     },
-  },
-  data() {
-    return {
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-      },
-    };
   },
 });
 </script>

@@ -1,26 +1,25 @@
 <template>
-  <Line :height="500" :width="500" :data="chartData" />
+  <Bar :data="chartData" :width="500" :height="500" />
 </template>
 
 <script lang="ts">
 import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
   Title,
   Tooltip,
   Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
   ChartData,
 } from "chart.js";
-import { Line } from "vue-chartjs";
 import { defineComponent, PropType } from "vue";
+import { Bar } from "vue-chartjs";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -28,13 +27,21 @@ ChartJS.register(
 
 export default defineComponent({
   components: {
-    Line,
+    Bar,
   },
   props: {
     chartData: {
       default: () => ({}),
-      type: Object as PropType<ChartData<"line", number[], unknown>>,
+      type: Object as PropType<ChartData<"bar", number[], unknown>>,
     },
+  },
+  data() {
+    return {
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+      },
+    };
   },
 });
 </script>

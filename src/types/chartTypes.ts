@@ -1,3 +1,5 @@
+import { ChartData } from "chart.js";
+
 export type DatasetType = {
   label: string;
   borderColor: string;
@@ -13,7 +15,7 @@ export type ChartDataType = {
 };
 
 export type GraphDataType = {
-  numberOfReposByYear: ChartDataType;
-  languageTypes: ChartDataType;
-  topReposByStars: ChartDataType;
+  numberOfReposByYear: ChartData<"line", number[], unknown>;
+  languageTypes: ChartData<"doughnut", number[], unknown>;
+  topReposByStars: ChartData<"bar", number[], unknown>;
 };
