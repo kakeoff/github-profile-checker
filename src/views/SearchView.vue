@@ -1,8 +1,10 @@
 <template>
-  <div class="mt-[10px] mx-[20px] flex flex-col items-center h-screen w-full">
+  <div
+    v-if="profileLoaded"
+    class="mt-[10px] flex flex-col items-center gap-[50px] mb-[50px] w-full"
+  >
     <div
-      v-if="profileLoaded"
-      class="shadow-lg w-[80%] flex flex-row justify-between bg-gray-100 rounded-[12px]"
+      class="shadow-lg w-full flex flex-row justify-between bg-gray-100 rounded-[12px]"
     >
       <div class="flex flex-row gap-[10px]">
         <img
@@ -68,26 +70,40 @@
       </a>
     </div>
     <div
-      class="flex flex-row flex-wrap justify-around gap-[40px] mt-[50px] w-full"
+      class="shadow-lg w-full px-[20px] py-[15px] bg-gray-100 rounded-[12px]"
     >
-      <div class="w-[500px] h-[500px]">
-        <LineChart
-          v-if="graphData.numberOfReposByYear"
-          :chart-data="graphData.numberOfReposByYear"
-        />
+      <span class="text-[35px] font-[700]">Statistics</span>
+      <div class="flex flex-row flex-wrap justify-between mt-[50px] w-full">
+        <div class="w-[400px] flex flex-col items-center gap-[5px]">
+          <span class="font-[500] text-[25px]">Repos Over Time</span>
+          <LineChart
+            v-if="graphData.numberOfReposByYear"
+            :chart-data="graphData.numberOfReposByYear"
+          />
+        </div>
+        <div class="w-[400px] flex flex-col items-center gap-[5px]">
+          <span class="font-[500] text-[25px]">Popular Repos</span>
+
+          <BarChart
+            v-if="graphData.topReposByStars"
+            :chart-data="graphData.topReposByStars"
+          />
+        </div>
+        <div class="w-[400px] flex flex-col items-center gap-[5px]">
+          <span class="font-[500] text-[25px]">Languages</span>
+
+          <DoughnutChart
+            v-if="graphData.languageTypes"
+            :chart-data="graphData.languageTypes"
+          />
+        </div>
       </div>
-      <div class="w-[500px] h-[500px]">
-        <DoughnutChart
-          v-if="graphData.languageTypes"
-          :chart-data="graphData.languageTypes"
-        />
-      </div>
-      <div class="w-[500px] h-[500px]">
-        <BarChart
-          v-if="graphData.topReposByStars"
-          :chart-data="graphData.topReposByStars"
-        />
-      </div>
+    </div>
+
+    <div
+      class="shadow-lg w-full px-[20px] py-[15px] bg-gray-100 rounded-[12px]"
+    >
+      <span class="text-[35px] font-[700]">Repositories</span>
     </div>
   </div>
 </template>
@@ -161,7 +177,7 @@ const getAllProfileData = async () => {
   // data
   await getGithubUser();
   if (userProfile.value?.repos_url) {
-    await getRepos(userProfile.value?.repos_url);
+    await getRepos(userProfile.value.repos_url);
   }
   // -------
 

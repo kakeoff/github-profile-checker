@@ -35,11 +35,12 @@
       </div>
     </el-tooltip>
   </nav>
-  <div class="overflow-y-auto overflow-x-hidden mt-[50px]">
+  <div class="px-[40px] flex w-full mt-[70px] justify-center items-center">
     <slot />
   </div>
   <div
-    class="w-full text-center px-[30px] flex flex-row items-center py-[20px] justify-center"
+    v-if="isMainView"
+    class="w-full text-center px-[30px] fixed bottom-0 flex flex-row items-center py-[20px] justify-center"
   >
     <span>
       Created by
@@ -69,13 +70,17 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, Ref, ref } from "vue";
+import { computed, nextTick, Ref, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const showSearchInput: Ref<boolean> = ref(false);
 const searchInputEl: Ref<HTMLInputElement | null> = ref(null);
 const inputValue = ref("");
+
+const isMainView = computed(() => {
+  return router.currentRoute.value.name === "mainView";
+});
 
 const onShowSearchInput = async (value: boolean) => {
   showSearchInput.value = value;
