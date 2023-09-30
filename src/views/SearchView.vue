@@ -73,7 +73,7 @@
       class="shadow-lg w-full px-[20px] py-[15px] bg-gray-100 rounded-[12px]"
     >
       <span class="text-[35px] font-[700]">Statistics</span>
-      <div class="flex flex-row flex-wrap justify-between mt-[50px] w-full">
+      <div class="flex flex-row flex-wrap justify-between mt-[10px] w-full">
         <div class="w-[400px] flex flex-col items-center gap-[5px]">
           <span class="font-[500] text-[25px]">Repos Over Time</span>
           <LineChart
@@ -104,6 +104,10 @@
       class="shadow-lg w-full px-[20px] py-[15px] bg-gray-100 rounded-[12px]"
     >
       <span class="text-[35px] font-[700]">Repositories</span>
+      <ReposTable
+        class="mt-[10px] rounded-[12px] max-h-[500px] overflow-auto"
+        :table-data="profilesStore.profileRepos"
+      />
     </div>
   </div>
 </template>
@@ -119,6 +123,7 @@ import { GraphDataType } from "../types/chartTypes";
 import LineChart from "../components/charts/LineChart.vue";
 import DoughnutChart from "../components/charts/DoughnutChart.vue";
 import BarChart from "../components/charts/BarChart.vue";
+import { formatDate } from "../helpers/helper";
 
 const route = useRoute();
 const router = useRouter();
@@ -185,15 +190,5 @@ const getAllProfileData = async () => {
     profileLoaded.value = true;
   });
   loading.close();
-};
-
-const formatDate = (inputDateString: string | undefined) => {
-  if (!inputDateString) return "Date not found";
-  const date = new Date(inputDateString);
-  const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
-
-  return formattedDate;
 };
 </script>
