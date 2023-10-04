@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="props.tableData" style="width: 100%">
+  <el-table :width="500" :data="props.tableData" style="width: 100%">
     <el-table-column prop="name" label="Name" width="300" />
     <el-table-column prop="html_url" label="Links">
       <template #default="scope">
