@@ -1,6 +1,6 @@
 <template>
   <div
-    class="shadow-lg text-center sm:text-left w-full px-[20px] py-[15px] bg-gray-100 rounded-[12px]"
+    class="shadow-lg text-center sm:text-left w-full px-[20px] pt-[15px] pb-[20px] bg-gray-100 rounded-[12px]"
   >
     <div
       class="w-full flex flex-col sm:flex-row items-center sm:justify-between"
@@ -17,7 +17,7 @@
       </div>
     </div>
     <el-table
-      class="rounded-[12px]"
+      class="rounded-[12px] mt-[10px]"
       :height="500"
       :data="filterTableData"
       style="width: 100%"
@@ -25,14 +25,17 @@
       <el-table-column prop="name" label="Name" width="300" />
       <el-table-column prop="html_url" label="Links">
         <template #default="scope">
-          <el-tooltip content="Repo link">
+          <el-tooltip v-if="scope.row.html_url" content="Repo link">
             <a
               :href="scope.row.html_url"
               class="mdi mdi-github text-blue-700 text-[20px]"
               target="_blank"
             />
           </el-tooltip>
-          <el-tooltip content="Homepage link">
+          <el-tooltip
+            v-if="scope.row.homepage !== null && scope.row.homepage !== ''"
+            content="Homepage link"
+          >
             <a
               v-if="scope.row.homepage !== null && scope.row.homepage !== ''"
               :href="scope.row.homepage"

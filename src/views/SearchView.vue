@@ -25,7 +25,7 @@
               <span>{{ userProfile?.name || userProfile?.login }}</span>
             </div>
             <div
-              class="flex text-[15px] mx-[10px] sm:px-0 justify-center md:justify-start md:text-[20px] font-[500] flex-row gap-[10px]"
+              class="flex text-[15px] mx-[10px] sm:mx-0 justify-center md:justify-start md:text-[20px] font-[500] flex-row gap-[10px]"
             >
               <span
                 class="bg-red-300 px-[10px] text-center py-[5px] rounded-tr-[12px] rounded-bl-[12px]"
@@ -62,23 +62,15 @@
                 </div>
               </el-tooltip>
             </div>
-            <div class="flex flex-row gap-[10px]">
-              <button
-                class="text-[12px] md:text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] transition duration-200 bg-gray-200 rounded-tr-[12px] rounded-bl-[12px] px-[10px] py-[5px] w-[130px] md:w-[170px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
-              >
-                <span class="mdi mdi-information-outline text-[25px]" />
-                <span>See more info</span>
-              </button>
-              <a
-                :href="userProfile?.html_url"
-                target="_blank"
-                class="text-[12px] md:text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] transition duration-200 bg-gray-200 rounded-tr-[12px] rounded-bl-[12px] px-[10px] py-[5px] w-[130px] md:w-[170px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
-              >
-                <span class="mdi mdi-github text-[25px]" />
-                <span>Profile Link</span>
-                <span class="mdi mdi-link-variant"></span>
-              </a>
-            </div>
+            <a
+              :href="userProfile?.html_url"
+              target="_blank"
+              class="text-[12px] md:text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] transition duration-200 bg-gray-200 rounded-tr-[12px] rounded-bl-[12px] px-[10px] py-[5px] w-[150px] md:w-[200px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
+            >
+              <span class="mdi mdi-github text-[25px]" />
+              <span>Check profile</span>
+              <span class="mdi mdi-link-variant"></span>
+            </a>
           </div>
         </div>
       </div>
@@ -112,7 +104,6 @@
             class="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
           >
             <span class="font-[500] text-[25px]">Languages</span>
-
             <DoughnutChart
               v-if="graphData.languageTypes"
               :chart-data="graphData.languageTypes"
@@ -181,7 +172,7 @@ watch(searchValue, (newVal, oldVal) => {
 onMounted(async () => {
   includeForked.value =
     localStorage.getItem("includeForked") === "1" ? true : false;
-  getAllProfileData();
+  await getAllProfileData();
 });
 
 const getGithubUser = async () => {
