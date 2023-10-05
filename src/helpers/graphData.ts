@@ -139,10 +139,12 @@ const createLanguageTypes = (
     ],
   };
 
-  Object.keys(data).forEach((item) => {
-    returnData.labels.push(item);
-    returnData.datasets[0].data.push(data[item]);
-  });
+  Object.keys(data)
+    .sort((a, b) => data[b] - data[a])
+    .forEach((item) => {
+      returnData.labels.push(item);
+      returnData.datasets[0].data.push(data[item]);
+    });
 
   return returnData;
 };
