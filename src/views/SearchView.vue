@@ -4,7 +4,7 @@
       v-if="profileLoaded"
       class="mt-[10px] flex flex-col items-center gap-[50px] w-full h-full"
     >
-      <div class="shadow-lg w-full rounded-[12px]">
+      <div class="shadow-lg w-full bg-gray-100 rounded-[12px]">
         <div
           class="flex flex-col sm:flex-row items-center md:items-start gap-0 md:gap-[10px]"
         >
@@ -121,15 +121,10 @@
         </div>
       </div>
 
-      <div
-        class="shadow-lg text-center sm:text-left w-full px-[20px] py-[15px] bg-gray-100 rounded-[12px]"
-      >
-        <span class="text-[35px] font-[700]">Repositories</span>
-        <ReposTable
-          class="mt-[10px] rounded-[12px]"
-          :table-data="profilesStore.profileRepos"
-        />
-      </div>
+      <ReposTable
+        class="mt-[10px] rounded-[12px]"
+        :table-data="profilesStore.profileRepos"
+      />
     </div>
   </section>
 </template>
