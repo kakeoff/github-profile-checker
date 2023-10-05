@@ -2,7 +2,7 @@
   <section class="w-full h-full">
     <div
       v-if="profileLoaded"
-      class="mt-[10px] flex flex-col items-center gap-[50px] w-full h-full"
+      class="mt-[10px] flex flex-col items-center gap-[15px] w-full h-full"
     >
       <div class="shadow-lg w-full bg-gray-100 rounded-[12px]">
         <div
@@ -121,10 +121,16 @@
         </div>
       </div>
 
-      <ReposTable
-        class="mt-[10px] rounded-[12px]"
-        :table-data="profilesStore.profileRepos"
-      />
+      <ReposTable class="mt-[10px] rounded-[12px]" :table-data="profileRepos" />
+      <div
+        class="select-none py-[20px] flex flex-row items-center justify-center gap-[5px]"
+      >
+        <el-checkbox
+          @change="onChangeIncludeForked"
+          v-model="includeForked"
+          label="Show forked repositories"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -154,9 +160,17 @@ const graphData: Ref<GraphDataType> = ref({} as GraphDataType);
 const userProfile = computed(() => {
   return profilesStore.profile;
 });
+
+const profileRepos = computed(() => {
+  if (!includeForked.value) {
+    return profilesStore.profileRepos.filter((repo) => !repo.fork);
+  }
+  return profilesStore.profileRepos;
+});
 const searchValue = computed(() => {
   return String(route.query.q);
 });
+const includeForked: Ref<boolean> = ref(false);
 
 watch(searchValue, (newVal, oldVal) => {
   if (newVal !== oldVal) {
@@ -165,6 +179,8 @@ watch(searchValue, (newVal, oldVal) => {
 });
 
 onMounted(async () => {
+  includeForked.value =
+    localStorage.getItem("includeForked") === "1" ? true : false;
   getAllProfileData();
 });
 
@@ -184,8 +200,7 @@ const getGithubUser = async () => {
 
 const getRepos = async (url: string) => {
   await profilesStore.getGithubUserRepos(url);
-  graphData.value = createGraphData(profilesStore.profileRepos);
-  console.log(graphData.value);
+  graphData.value = createGraphData(profileRepos.value);
 };
 
 const getAllProfileData = async () => {
@@ -196,16 +211,19 @@ const getAllProfileData = async () => {
     background: "rgba(0, 0, 0, 0.7)",
   });
 
-  // data
   await getGithubUser();
   if (userProfile.value?.repos_url) {
     await getRepos(userProfile.value.repos_url);
   }
-  // -------
 
   nextTick(() => {
     profileLoaded.value = true;
   });
   loading.close();
+};
+
+const onChangeIncludeForked = () => {
+  localStorage.setItem("includeForked", includeForked.value ? "1" : "0");
+  graphData.value = createGraphData(profileRepos.value);
 };
 </script>
