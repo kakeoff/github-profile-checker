@@ -30,7 +30,7 @@
           ref="searchInputEl"
           placeholder="Profile name"
           v-if="showSearchInput"
-          class="transition bg-gray-200 duration-200 rounded-[12px] h-[30px]"
+          class="transition w-[120px] sm:w-[250px] bg-gray-200 duration-200 rounded-[12px] h-[30px]"
           type="text"
         />
       </div>
