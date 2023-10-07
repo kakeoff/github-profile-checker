@@ -19,6 +19,8 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     LineChart: typeof import('./src/components/charts/LineChart.vue')['default']
+    ProfileSearchHistory: typeof import('./src/components/ProfileSearchHistory.vue')['default']
+    ProfileSearchHistoryType: typeof import('./src/components/ProfileSearchHistoryType.vue')['default']
     ReposTable: typeof import('./src/components/ReposTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

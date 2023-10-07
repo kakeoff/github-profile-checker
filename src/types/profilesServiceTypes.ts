@@ -53,3 +53,10 @@ export type GitHubRepoType = {
   url: string;
   watchers_count: number;
 };
+
+export type ProfileSearchHistoryType = {
+  avatar_url: string;
+  name: string;
+  login: string;
+  url: string;
+};

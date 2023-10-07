@@ -1,17 +1,36 @@
 import { defineStore } from "pinia";
 import * as api from "../services/profilesService";
-import { GitHubRepoType, GithubUserType } from "../types/profilesServiceTypes";
+import {
+  GitHubRepoType,
+  GithubUserType,
+  ProfileSearchHistoryType,
+} from "../types/profilesServiceTypes";
 
 export const useProfilesStore = defineStore("profiles", {
   state: () => ({
     profile: null as GithubUserType | null,
     profileRepos: [] as GitHubRepoType[],
+    profilesHistory: [] as ProfileSearchHistoryType[],
   }),
   getters: {},
   actions: {
     async getGithubUser(username: string): Promise<GithubUserType | null> {
       const userResponse = await api.getGithubUser(username);
-      this.profile = userResponse;
+      if (userResponse) {
+        this.profile = userResponse;
+        const historyObj: ProfileSearchHistoryType = {
+          avatar_url: userResponse.avatar_url,
+          name: userResponse.name,
+          login: userResponse.login,
+          url: userResponse.url,
+        };
+        const isHistoryObjExists = this.profilesHistory.find(
+          (profile) => profile.login === historyObj.login,
+        );
+        if (!isHistoryObjExists) {
+          this.profilesHistory.push(historyObj);
+        }
+      }
       return userResponse;
     },
 

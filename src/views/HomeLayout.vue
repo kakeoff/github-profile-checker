@@ -6,7 +6,7 @@
       to="/"
       class="hover:scale-[1.01] hover:text-gray-700 transition duration-200"
     >
-      Github Profile Checker
+      GITHUB PROFILE CHECKER
     </router-link>
     <el-tooltip
       v-if="!isMainView"
