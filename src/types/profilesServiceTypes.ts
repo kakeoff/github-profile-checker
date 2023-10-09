@@ -58,5 +58,5 @@ export type ProfileSearchHistoryType = {
   avatar_url: string;
   name: string;
   login: string;
-  url: string;
+  html_url: string;
 };

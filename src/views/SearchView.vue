@@ -4,8 +4,9 @@
       v-if="profileLoaded"
       class="mt-[10px] flex flex-col items-center gap-[15px] w-full h-full"
     >
-      <div class="flex flex-row justify-between gap-[15px] w-full">
-        <div class="shadow-lg w-full bg-gray-100 rounded-[12px]">
+      <div class="flex flex-col lg:flex-row justify-between gap-[15px] w-full">
+        <ProfileSearchHistory :history="profilesHistory" />
+        <div class="shadow-lg border w-full bg-gray-100 rounded-[12px]">
           <div
             class="flex flex-col sm:flex-row items-center md:items-start gap-0 md:gap-[10px]"
           >
@@ -75,19 +76,18 @@
             </div>
           </div>
         </div>
-        <ProfileSearchHistory :history="profilesHistory" />
       </div>
       <div
-        class="shadow-lg text-center sm:text-left w-full px-[20px] py-[15px] bg-gray-100 rounded-[12px]"
+        class="shadow-lg text-center sm:text-left w-full px-[20px] py-[15px] border bg-gray-100 rounded-[12px]"
       >
-        <span class="text-[35px] font-[700]">Statistics</span>
+        <span class="text-[35px] font-[700]">STATISTICS</span>
         <div
           class="flex flex-row flex-wrap justify-center lg:justify-between gap-[25px] items-center mt-[10px] w-full"
         >
           <div
             class="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
           >
-            <span class="font-[500] text-[25px]">Repos Over Time</span>
+            <span class="font-[500] text-[25px]">REPOS OVER TIME</span>
             <LineChart
               v-if="graphData.numberOfReposByYear"
               :chart-data="graphData.numberOfReposByYear"
@@ -96,7 +96,7 @@
           <div
             class="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
           >
-            <span class="font-[500] text-[25px]">Popular Repos</span>
+            <span class="font-[500] text-[25px]">POPULAR REPOS</span>
 
             <BarChart
               v-if="graphData.topReposByStars"
@@ -106,7 +106,7 @@
           <div
             class="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
           >
-            <span class="font-[500] text-[25px]">Languages</span>
+            <span class="font-[500] text-[25px]">LANGUAGES</span>
             <DoughnutChart
               v-if="graphData.languageTypes"
               :chart-data="graphData.languageTypes"
@@ -178,6 +178,7 @@ watch(searchValue, (newVal, oldVal) => {
 onMounted(async () => {
   includeForked.value =
     localStorage.getItem("includeForked") === "1" ? true : false;
+  profilesStore.loadProfilesHistory();
   await getAllProfileData();
 });
 

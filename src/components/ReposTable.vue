@@ -1,17 +1,17 @@
 <template>
   <div
-    class="shadow-lg text-center sm:text-left w-full px-[20px] pt-[15px] pb-[20px] bg-gray-100 rounded-[12px]"
+    class="shadow-lg border text-center sm:text-left w-full px-[20px] pt-[15px] pb-[20px] bg-gray-100 rounded-[12px]"
   >
     <div
       class="w-full flex flex-col sm:flex-row items-center sm:justify-between"
     >
-      <span class="text-[35px] font-[700]">Repositories</span>
+      <span class="text-[35px] font-[700]">REPOSITORIES</span>
       <div class="flex items-center">
         <span class="mdi mdi-magnify text-[35px]" />
         <input
           v-model="searchValue"
           placeholder="Type to search"
-          class="transition w-[200px] bg-transparent duration-200 rounded-[12px] h-[35px]"
+          class="transition hover:scale-[1.01] hover:border-black w-[200px] bg-transparent duration-200 rounded-[12px] h-[35px]"
           type="text"
         />
       </div>
