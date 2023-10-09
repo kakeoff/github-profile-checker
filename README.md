@@ -7,6 +7,8 @@
 - Vue 3
 - TypeScript
 - Tailwind CSS
+- Element Plus
+- ChartsJS
 - Pinia
 - Vue Router
 - ESLint
