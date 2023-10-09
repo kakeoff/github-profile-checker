@@ -67,7 +67,7 @@
               <a
                 :href="userProfile?.html_url"
                 target="_blank"
-                class="text-[12px] md:text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] hover:bg-gray-300 transition duration-200 bg-gray-200 rounded-tr-[12px] rounded-bl-[12px] px-[10px] py-[5px] w-[150px] md:w-[200px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
+                class="text-[12px] md:text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] hover:bg-gray-300 transition duration-200 bg-gray-200 rounded-[12px] px-[10px] py-[5px] w-[150px] md:w-[200px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
               >
                 <span class="mdi mdi-github text-[25px]" />
                 <span>Check profile</span>
