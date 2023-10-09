@@ -13,7 +13,7 @@
             <div class="h-full flex items-center justify-center p-[10px]">
               <img
                 :src="userProfile?.avatar_url"
-                class="w-[400px] min-w-[220px] sm:w-[220px] rounded-[12px]"
+                class="w-[400px] border pointer-events-none min-w-[220px] sm:w-[220px] rounded-[12px]"
                 alt="user avatar"
               />
             </div>
@@ -67,7 +67,7 @@
               <a
                 :href="userProfile?.html_url"
                 target="_blank"
-                class="text-[12px] md:text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] transition duration-200 bg-gray-200 rounded-tr-[12px] rounded-bl-[12px] px-[10px] py-[5px] w-[150px] md:w-[200px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
+                class="text-[12px] md:text-[17px] mt-[-10px] hover:shadow-md hover:scale-[1.01] hover:bg-gray-300 transition duration-200 bg-gray-200 rounded-tr-[12px] rounded-bl-[12px] px-[10px] py-[5px] w-[150px] md:w-[200px] font-[400] flex h-[40px] text-gray-600 items-center gap-[5px]"
               >
                 <span class="mdi mdi-github text-[25px]" />
                 <span>Check profile</span>
@@ -124,7 +124,7 @@
 
       <ReposTable class="mt-[10px] rounded-[12px]" :table-data="profileRepos" />
       <div
-        class="select-none py-[20px] flex flex-row items-center justify-center gap-[5px]"
+        class="select-none py-[20px] hover:scale-[1.03] transition duration-200 flex flex-row items-center justify-center gap-[5px]"
       >
         <el-checkbox
           @change="onChangeIncludeForked"

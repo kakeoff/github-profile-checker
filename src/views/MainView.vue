@@ -8,7 +8,7 @@
     <div class="w-full flex justify-center">
       <input
         v-model="inputValue"
-        class="w-[300px] rounded-[12px] transition duration-200 hover:scale-[1.01] md:w-[500px]"
+        class="w-[300px] rounded-[12px] text-[20px] transition duration-200 h-[50px] hover:scale-[1.01] md:w-[500px]"
         placeholder="Profile name"
         type="text"
         @keyup.enter="onSearch"

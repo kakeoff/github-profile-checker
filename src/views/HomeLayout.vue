@@ -2,10 +2,7 @@
   <nav
     class="text-[18px] md:text-[25px] fixed top-0 w-full h-[50px] flex items-center justify-between px-[10px] bg-gray-200 z-[2] font-[700]"
   >
-    <router-link
-      to="/"
-      class="hover:scale-[1.01] hover:text-gray-700 transition duration-200"
-    >
+    <router-link to="/" class="hover:scale-[1.01] transition duration-200">
       GITHUB PROFILE CHECKER
     </router-link>
     <el-tooltip
@@ -50,25 +47,35 @@
           class="text-blue-600"
           href="https://github.com/kakeoff"
           target="_blank"
-          >kakeoff</a
         >
+          kakeoff
+        </a>
         using
-        <a class="text-blue-600" href="https://vuejs.org/" target="_blank"
-          >VueJS</a
-        >
+        <a class="text-blue-600" href="https://vuejs.org/" target="_blank">
+          VueJS
+        </a>
         +
-        <a class="text-blue-600" href="https://pinia.vuejs.org/" target="_blank"
-          >Pinia</a
+        <a
+          class="text-blue-600"
+          href="https://pinia.vuejs.org/"
+          target="_blank"
         >
+          Pinia
+        </a>
         +
-        <a class="text-blue-600" href="https://www.chartjs.org/" target="_blank"
-          >ChartsJS</a
+        <a
+          class="text-blue-600"
+          href="https://www.chartjs.org/"
+          target="_blank"
+        >
+          ChartsJS</a
         >. Check out the code
         <a
           class="text-blue-600"
           href="https://github.com/kakeoff/github-profile-checker"
           target="_blank"
-          >here</a
+        >
+          here</a
         >.
       </span>
     </footer>

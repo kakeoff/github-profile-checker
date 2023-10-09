@@ -11,7 +11,7 @@
         <input
           v-model="searchValue"
           placeholder="Type to search"
-          class="transition hover:scale-[1.01] hover:border-black w-[200px] bg-transparent duration-200 rounded-[12px] h-[35px]"
+          class="transition hover:border-gray-400 border-gray-300 w-[200px] bg-transparent duration-200 rounded-[12px] h-[35px]"
           type="text"
         />
       </div>

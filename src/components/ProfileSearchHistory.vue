@@ -20,7 +20,7 @@
       >
         <div class="flex flex-row items-center gap-[10px]">
           <img
-            class="w-[45px] h-[45px] rounded-[6px]"
+            class="w-[45px] pointer-events-none h-[45px] rounded-[6px]"
             :src="item.avatar_url"
             alt="avatar"
           />
