@@ -82,6 +82,7 @@
       >
         <span class="text-[35px] font-[700]">STATISTICS</span>
         <div
+          v-if="profileRepos.length"
           class="flex flex-row flex-wrap justify-center lg:justify-between gap-[25px] items-center mt-[10px] w-full"
         >
           <div
@@ -112,6 +113,12 @@
               :chart-data="graphData.languageTypes"
             />
           </div>
+        </div>
+        <div
+          class="w-full h-[100px] flex justify-center items-center text-gray-500"
+          v-else
+        >
+          <span>There are no public repositories</span>
         </div>
       </div>
 
@@ -198,7 +205,9 @@ const getGithubUser = async () => {
 
 const getRepos = async (url: string) => {
   await profilesStore.getGithubUserRepos(url);
-  graphData.value = createGraphData(profileRepos.value);
+  if (profileRepos.value.length) {
+    graphData.value = createGraphData(profileRepos.value);
+  }
 };
 
 const getAllProfileData = async () => {
@@ -222,6 +231,8 @@ const getAllProfileData = async () => {
 
 const onChangeIncludeForked = () => {
   localStorage.setItem("includeForked", includeForked.value ? "1" : "0");
-  graphData.value = createGraphData(profileRepos.value);
+  if (profileRepos.value.length) {
+    graphData.value = createGraphData(profileRepos.value);
+  }
 };
 </script>
