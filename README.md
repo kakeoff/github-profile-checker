@@ -2,6 +2,10 @@
 
 > Github profile information checker with user-friendly interface and functionality
 
+## Preview
+
+![image](src/assets/images/preview.png)
+
 ## Features
 
 - Vue 3
