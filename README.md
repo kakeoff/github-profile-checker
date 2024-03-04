@@ -2,6 +2,8 @@
 
 > Github profile information checker with user-friendly interface and functionality
 
+> Demo: https://endearing-kashata-3e530f.netlify.app/
+
 ## Preview
 
 ![image](src/assets/images/preview.png)
