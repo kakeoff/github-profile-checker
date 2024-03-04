@@ -4,3 +4,6 @@ node_modules
 dist
 .vscode
 .eslintcache
+
+# Local Netlify folder
+.netlify

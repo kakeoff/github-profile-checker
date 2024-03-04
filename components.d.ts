@@ -7,14 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Bar: typeof import('./src/components/charts/Bar.vue')['default']
     BarChart: typeof import('./src/components/charts/BarChart.vue')['default']
-    Doughnut: typeof import('./src/components/charts/Doughnut.vue')['default']
     DoughnutChart: typeof import('./src/components/charts/DoughnutChart.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElInput: typeof import('element-plus/es')['ElInput']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
