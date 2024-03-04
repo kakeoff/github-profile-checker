@@ -5,7 +5,7 @@
     <span class="text-[35px] font-[700]">STATISTICS</span>
     <div
       v-if="reposLength"
-      class="flex flex-row flex-wrap justify-center lg:justify-between gap-[25px] items-center mt-[10px] w-full"
+      class="flex flex-row flex-wrap justify-center lg:justify-between gap-[20px] items-start mt-[10px] w-full"
     >
       <div
         class="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
@@ -20,20 +20,23 @@
         class="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
       >
         <span class="font-[500] text-[25px]">POPULAR</span>
-
         <BarChart
           v-if="graphData.topReposByStars"
           :chart-data="graphData.topReposByStars"
         />
       </div>
       <div
-        class="w-[300px] sm:w-[500px] md:w-[600px] lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
+        class="w-[300px] sm:w-[500px] md:w-[600px] h-full lg:w-[280px] xl:w-[370px] 2xl:w-[450px] flex flex-col items-center gap-[5px]"
       >
         <span class="font-[500] text-[25px]">LANGUAGES</span>
         <DoughnutChart
-          v-if="graphData.languageTypes"
+          v-if="
+            graphData.languageTypes.labels &&
+            graphData.languageTypes.labels?.length
+          "
           :chart-data="graphData.languageTypes"
         />
+        <span class="text-gray-500" v-else>NO DATA</span>
       </div>
     </div>
     <div

@@ -6,19 +6,16 @@
       class="w-full flex flex-col sm:flex-row items-center sm:justify-between"
     >
       <span class="text-[35px] font-[700]">REPOSITORIES</span>
-      <div class="flex items-center">
-        <span class="mdi mdi-magnify text-[35px]" />
-        <input
-          v-model="searchValue"
-          placeholder="Type to search"
-          class="transition hover:border-gray-400 border-gray-300 hover:shadow-md w-[200px] bg-transparent duration-200 rounded-[12px] h-[35px]"
-          type="text"
-        />
-      </div>
+      <input
+        v-model="searchValue"
+        placeholder="Type to search"
+        class="transition focus:ring-0 focus:border-black focus:bg-black/5 bg-transparent duration-200 rounded-[8px] h-full"
+        type="text"
+      />
     </div>
     <el-table
       class="rounded-[12px] mt-[10px]"
-      :height="500"
+      :height="400"
       :data="filterTableData"
       style="width: 100%"
     >
@@ -74,7 +71,7 @@
         </template>
       </el-table-column>
       <el-table-column width="130" prop="language" label="Language" />
-      <el-table-column width="130" prop="created_at" label="Created">
+      <el-table-column width="135" prop="created_at" label="Created">
         <template #default="scope">
           <div class="flex flex-row items-center gap-[3px]">
             <span class="mdi mdi-calendar-month text-orange-500 text-[20px]" />
@@ -83,7 +80,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column width="130" prop="updated_at" label="Updated">
+      <el-table-column width="135" prop="updated_at" label="Updated">
         <template #default="scope">
           <div class="flex flex-row items-center gap-[3px]">
             <span class="mdi mdi-update text-purple-500 text-[20px]" />
@@ -111,8 +108,12 @@ const filterTableData = computed(() =>
     .filter(
       (data) =>
         !searchValue.value ||
-        data.name.toLowerCase().includes(searchValue.value.toLowerCase()) ||
-        data.language.toLowerCase().includes(searchValue.value.toLowerCase()),
+        (data.name &&
+          data.name.toLowerCase().includes(searchValue.value.toLowerCase())) ||
+        (data.language &&
+          data.language
+            .toLowerCase()
+            .includes(searchValue.value.toLowerCase())),
     )
     .sort(
       (a, b) =>

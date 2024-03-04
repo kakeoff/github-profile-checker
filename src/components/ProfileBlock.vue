@@ -38,22 +38,31 @@
         <div
           class="flex flex-row text-[15px] justify-center md:justify-start md:text-[20px] mb-[5px] gap-[10px]"
         >
-          <el-tooltip content="Profile creation date">
-            <div
-              class="font-[400] flex h-[40px] text-gray-600 items-center justify-center gap-[5px]"
+          <div
+            class="font-[400] flex h-[40px] text-gray-600 items-center justify-center gap-[5px]"
+          >
+            <el-tooltip
+              placement="right"
+              :enterable="false"
+              content="Profile creation date"
             >
               <span class="mdi mdi-calendar-month text-[25px] md:text-[30px]" />
-              <span>{{ formatDate(userProfile?.created_at) }}</span>
-            </div>
-          </el-tooltip>
-          <el-tooltip content="Profile last activity date">
-            <div
-              class="font-[400] flex h-[40px] text-gray-600 items-center justify-center gap-[5px]"
+            </el-tooltip>
+            <span>{{ formatDate(userProfile?.created_at) }}</span>
+          </div>
+
+          <div
+            class="font-[400] flex h-[40px] text-gray-600 items-center justify-center gap-[5px]"
+          >
+            <el-tooltip
+              :enterable="false"
+              placement="right"
+              content="Profile last activity date"
             >
               <span class="mdi mdi-update text-[25px] md:text-[30px]" />
-              <span>{{ formatDate(userProfile?.updated_at) }}</span>
-            </div>
-          </el-tooltip>
+            </el-tooltip>
+            <span>{{ formatDate(userProfile?.updated_at) }}</span>
+          </div>
         </div>
         <a
           :href="userProfile?.html_url"
@@ -69,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { GithubUserType } from "../types/profileServiceTypes";
+import { GithubUserType } from "../types/profilesServiceTypes";
 import { formatDate } from "../helpers/helper";
 
 defineProps<{

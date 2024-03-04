@@ -26,7 +26,7 @@
           />
           <span>{{ item.name ?? item.login }}</span>
         </div>
-        <el-tooltip content="Profile link">
+        <el-tooltip :enterable="false" placement="left" content="Profile link">
           <button
             @click.stop="redirectProfilePage(item.html_url)"
             class="mdi mdi-github text-[25px] hover:text-black transition duration-200"

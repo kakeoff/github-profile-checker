@@ -175,7 +175,7 @@ const createTopReposByStars = (
     ],
   };
   sortedRepos.forEach((repo) => {
-    returnData.labels.push(repo.name);
+    returnData.labels.push(repo.name.substring(0, 12) + "...");
     returnData.datasets[0].data.push(repo.stargazers_count);
     returnData.datasets[1].data.push(repo.forks_count);
   });
@@ -186,7 +186,7 @@ const createGraphData = (repos: GitHubRepoType[]) => {
   const numberOfReposByYear = createNumberOfReposByYear(repos);
   const languageTypes = createLanguageTypes(repos);
   const topReposByStars = createTopReposByStars(repos);
-
+  console.log(topReposByStars);
   return {
     numberOfReposByYear,
     languageTypes,

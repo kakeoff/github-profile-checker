@@ -1,37 +1,30 @@
 <template>
   <nav
-    class="text-[18px] md:text-[25px] fixed top-0 w-full h-[50px] flex items-center justify-between px-[10px] bg-gray-200 z-[2] font-[700]"
+    class="text-[18px] md:text-[25px] fixed top-0 w-full h-[55px] flex items-center justify-between px-[35px] bg-gray-200 z-[2] font-[700]"
   >
-    <router-link to="/" class="hover:scale-[1.01] transition duration-200">
-      GITHUB PROFILE CHECKER
-    </router-link>
-    <el-tooltip
-      v-if="!isMainView"
-      :disabled="showSearchInput"
-      content="Search profile"
-      placement="bottom"
-    >
-      <div class="flex items-center">
-        <span
-          @click="onShowSearchInput(true)"
-          :class="{
-            'hover:scale-[1.1] transition duration-200 cursor-pointer':
-              !showSearchInput,
-          }"
-          class="mdi mdi-magnify text-[35px]"
-        />
+    <router-link to="/"> GITHUB PROFILE CHECKER </router-link>
+    <div class="flex items-center">
+      <div v-if="!isMainView" class="flex items-center h-[35px]">
         <input
+          id="searchInput"
           v-model="inputValue"
-          @blur="onShowSearchInput(false)"
-          @keyup.enter="onSearch"
           ref="searchInputEl"
+          @keydown.enter="onSearch"
           placeholder="Profile name"
-          v-if="showSearchInput"
-          class="transition w-[120px] sm:w-[250px] bg-gray-200 duration-200 rounded-[12px] h-[30px]"
+          class="transition w-[120px] sm:w-[250px] focus:ring-0 focus:border-black focus:bg-black/5 bg-gray-200 duration-200 rounded-l-[8px] h-full"
           type="text"
         />
+        <label
+          for="searchInput"
+          @click="onSearch"
+          class="border-[1px] h-full cursor-pointer group border-black bg-black flex items-center justify-center text-white w-[50px] rounded-r-[8px]"
+        >
+          <span
+            class="mdi mdi-magnify text-[30px] group-hover:scale-[0.9] transition duration-200"
+          />
+        </label>
       </div>
-    </el-tooltip>
+    </div>
   </nav>
   <div
     class="px-[15px] md:px-[40px] flex flex-col w-full h-full pt-[60px] justify-between items-center"
@@ -83,26 +76,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, Ref, ref } from "vue";
+import { computed, Ref, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const showSearchInput: Ref<boolean> = ref(false);
 const searchInputEl: Ref<HTMLInputElement | null> = ref(null);
 const inputValue = ref("");
 
 const isMainView = computed(() => {
   return router.currentRoute.value.name === "mainView";
 });
-
-const onShowSearchInput = async (value: boolean) => {
-  showSearchInput.value = value;
-  nextTick(() => {
-    if (searchInputEl.value && value) {
-      searchInputEl.value.focus();
-    }
-  });
-};
 
 const onSearch = () => {
   if (inputValue.value.length) {
@@ -112,8 +95,6 @@ const onSearch = () => {
         q: inputValue.value,
       },
     });
-    onShowSearchInput(false);
-    inputValue.value = "";
   }
 };
 </script>

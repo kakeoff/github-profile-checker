@@ -8,7 +8,7 @@ import {
 
 export const useProfilesStore = defineStore("profiles", {
   state: () => ({
-    profile: null as GithubUserType | null,
+    profile: {} as GithubUserType,
     profileRepos: [] as GitHubRepoType[],
     profilesHistory: [] as ProfileSearchHistoryType[],
   }),
